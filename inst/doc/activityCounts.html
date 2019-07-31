@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>activityCounts</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">activityCounts</h1>
+
+
+
+<div id="calculate-actilife-counts-from-raw-acceleration-data" class="section level4">
+<h4>Calculate ActiLife counts from raw acceleration data</h4>
+<style>
+  body{
+    text-align : justify;
+    line-height: 1.8em;
+  }
+</style>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Many research areas use accelerometers to study people’s activities including sleep, sedentary behaviour, and physical activity. Actigraph is one of the most common research grade accelerometers. Actigraph accelerometers include ActiLife is a closed-source software, which generates <a href="https://s3.amazonaws.com/actigraphcorp.com/wp-content/uploads/2017/11/26205758/ActiGraph-White-Paper_What-is-a-Count_.pdf">activity counts</a>. There is considerable research validating and developing algorithms for human activity using Actilife counts. Unfortunately, Actilife counts are proprietary and difficult to implement if researchers use different accelerometer brands. Recently, <a href="https://www.ncbi.nlm.nih.gov/pubmed/28604558">Brond et al.</a> developed a <a href="https://github.com/jbrond/ActigraphCounts">code</a> in MATLAB, which can convert raw accelerometer data to Actilife counts. Their work can help researchers use different accelerometers and calculate Actilife counts, MATLAB is a commercial program. Unlike MATLAB, R is open-source, and also R is very popular among health and activity researchers. The package activityCounts allow users to convert the accelerometer data to Actilife counts.</p>
+<p><br></p>
+</div>
+<div id="how-to-use" class="section level1">
+<h1>How to use</h1>
+<div id="install-r" class="section level2">
+<h2>Install R</h2>
+<p>Visit <a href="https://www.r-project.org/">R Project</a> to download and install R.</p>
+</div>
+<div id="install-rstudio-recommended" class="section level2">
+<h2>Install RStudio (recommended)</h2>
+<p>Although it is not necessary, RStudio makes using R easier. To install the latest version, go to <a href="https://www.rstudio.com/">RStudio</a> and download the installation file based on your operating system.</p>
+</div>
+<div id="install-activitycounts" class="section level2">
+<h2>Install activityCounts</h2>
+<p>You can install the released version of activityCounts from <a href="https://CRAN.R-project.org">CRAN</a> with running the following code in the R console:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;activityCounts&quot;</span>)</a></code></pre></div>
+<p>And the development version from <a href="https://github.com/walkabillylab/activityCounts">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;walkabillylab/activityCounts&quot;</span>)</a></code></pre></div>
+</div>
+<div id="load-activitycounts" class="section level2">
+<h2>Load activityCounts</h2>
+<p>To load the package and its sample datasets run the following in R console:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(activityCounts)</a></code></pre></div>
+</div>
+<div id="import-your-data" class="section level2">
+<h2>Import your data</h2>
+<p>To generate the counts, import your data from your source file. Store the data inside a variable so you can pass that the main function of the package, <code>counts()</code>. For example, you can use the <code>read_csv()</code> function from the <code>tidyverse</code> package to import your data: Note that the dataset must have three columns which X, Y, and Z readings.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># install.packages(&quot;tidyverse&quot;)</span></a>
+<a class="sourceLine" id="cb4-2" title="2">raw_accel_data &lt;-<span class="st"> </span>tidyverse<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;~/your_raw_accelerometer_data.csv&quot;</span>)</a></code></pre></div>
+</div>
+<div id="use-the-counts-function" class="section level2">
+<h2>Use the counts() function</h2>
+<p>To generate the counts, provide the function <code>counts()</code> with your data and the sampling frequency of the data.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># assume sampling frequency is 100 Hz</span></a>
+<a class="sourceLine" id="cb5-2" title="2">sampling_frequency &lt;-<span class="st"> </span><span class="dv">100</span> </a>
+<a class="sourceLine" id="cb5-3" title="3">counts_measures &lt;-<span class="st"> </span>activityCounts<span class="op">::</span><span class="kw">counts</span>(<span class="dt">data =</span> raw_accel_data, <span class="dt">hertz =</span> sampling_frequency)</a></code></pre></div>
+<p>Now the variable <code>counts_measures</code> contains three columns which indicate the calculated counts for X, Y, and Z axes respectively. If the data frequency is less than 30 Hz, first resample your data and increase the frequency to more than 30 Hz and then calculate the counts.</p>
+</div>
+</div>
+<div id="example" class="section level1">
+<h1>Example</h1>
+<div id="check-the-sample-input-dataset" class="section level2">
+<h2>Check the sample input dataset:</h2>
+<p>activityCounts package includes a sample dataset which is available for testing by importing the package. The name of the dataset is <code>sampleXYZ</code> and its sampling frequency is 100Hz. To check out sampleXYZ:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">data</span>(<span class="st">&quot;sampleXYZ&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">head</span>(sampleXYZ)</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt;                  Time accelerometer_X accelerometer_Y accelerometer_Z</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; 1 2019-01-01 00:00:00          -0.035           0.816          -0.063</span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; 2 2019-01-01 00:00:00          -0.047           0.805          -0.023</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; 3 2019-01-01 00:00:00          -0.031           0.793          -0.008</span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; 4 2019-01-01 00:00:00          -0.020           0.809           0.012</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; 5 2019-01-01 00:00:00          -0.016           0.844           0.023</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; 6 2019-01-01 00:00:00          -0.004           0.879           0.012</span></a></code></pre></div>
+</div>
+<div id="how-to-calculates-counts" class="section level2">
+<h2>How to calculates counts:</h2>
+<p>For sampleXYZ data, the first column is X, second is Y, and the third column is the Z axis, therefore when calling the function, specify the columns in the argument section. Now by applying the function <code>counts()</code> calculate the counts for sampleXYZ.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">sampleXYZ_counts &lt;-<span class="st"> </span><span class="kw">counts</span>(<span class="dt">data =</span> sampleXYZ, <span class="dt">hertz =</span> <span class="dv">100</span> ,<span class="dt">x_axis =</span> <span class="dv">1</span>,<span class="dt">y_axis =</span> <span class="dv">2</span>,<span class="dt">z_axis =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">head</span>(sampleXYZ_counts)</a></code></pre></div>
+<div id="use-your-own-data" class="section level3">
+<h3>Use your own data:</h3>
+<p>By default, the second column of your dataset should contain accelerometer data for x-axis, the third column for y-axis and the forth column for the z-axis However, you can specifically tell the counts() function which columns have the x, y, and z-axis data. Use x_axis, y_axis, and z_axis arguments when calling the function to specify the desired columns for each axes.</p>
+<p>In this example code, the first column has the time stamp for the data. The second column has the x-axis data, the third column has the y-axis data, and the fourth column has the z-axis data. Therefore, assuming the sampling frequency is 100 Hz, we call the function like this:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">calculated_output &lt;-<span class="st"> </span><span class="kw">counts</span>(<span class="dt">data =</span> your_raw_data, <span class="dt">hertz =</span> <span class="dv">100</span>, <span class="dt">x_axis =</span> <span class="dv">2</span>, <span class="dt">y_axis =</span> <span class="dv">3</span>, <span class="dt">z_axis =</span> <span class="dv">4</span>)</a></code></pre></div>
+<p>The default values for x_axis, y_axis, and z_axis are one, two, and three respectively. So if you don’t specify them, the function assumes the first column is for the x-axis, the second for the y-axis and the third is for the z-axis.</p>
+</div>
+</div>
+<div id="compare-the-sample-outputs" class="section level2">
+<h2>Compare the sample outputs:</h2>
+<p>The other dataset that comes with this package has nine columns; the first three columns are the raw accelerometer data from sampleXYZ, the next three columns are the counts calculated by the counts() function for X, Y, and Z axes. Finally, the last three columns are counts calculated by the ActiLife software. To check the data run the following:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">summary</span>(sampleCounts)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="co">#&gt;       Time                     activityCounts_x_counts</span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="co">#&gt;  Min.   :2019-01-01 00:00:00   Min.   :  0.0          </span></a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="co">#&gt;  1st Qu.:2019-01-01 00:11:14   1st Qu.:  0.0          </span></a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="co">#&gt;  Median :2019-01-01 00:22:29   Median :  0.0          </span></a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="co">#&gt;  Mean   :2019-01-01 00:22:29   Mean   : 10.2          </span></a>
+<a class="sourceLine" id="cb9-7" title="7"><span class="co">#&gt;  3rd Qu.:2019-01-01 00:33:44   3rd Qu.: 19.0          </span></a>
+<a class="sourceLine" id="cb9-8" title="8"><span class="co">#&gt;  Max.   :2019-01-01 00:44:59   Max.   :280.0          </span></a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="co">#&gt;  activityCounts_y_counts activityCounts_z_counts ActiLife_x_counts</span></a>
+<a class="sourceLine" id="cb9-10" title="10"><span class="co">#&gt;  Min.   :  0.00          Min.   :  0.00          Min.   :  0.000  </span></a>
+<a class="sourceLine" id="cb9-11" title="11"><span class="co">#&gt;  1st Qu.:  0.00          1st Qu.:  0.00          1st Qu.:  0.000  </span></a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="co">#&gt;  Median :  0.00          Median :  0.00          Median :  0.000  </span></a>
+<a class="sourceLine" id="cb9-13" title="13"><span class="co">#&gt;  Mean   : 16.33          Mean   : 12.51          Mean   :  9.849  </span></a>
+<a class="sourceLine" id="cb9-14" title="14"><span class="co">#&gt;  3rd Qu.: 37.00          3rd Qu.: 24.00          3rd Qu.: 18.000  </span></a>
+<a class="sourceLine" id="cb9-15" title="15"><span class="co">#&gt;  Max.   :225.00          Max.   :347.00          Max.   :269.000  </span></a>
+<a class="sourceLine" id="cb9-16" title="16"><span class="co">#&gt;  ActiLife_y_counts ActiLife_z_counts</span></a>
+<a class="sourceLine" id="cb9-17" title="17"><span class="co">#&gt;  Min.   :  0.00    Min.   :  0.00   </span></a>
+<a class="sourceLine" id="cb9-18" title="18"><span class="co">#&gt;  1st Qu.:  0.00    1st Qu.:  0.00   </span></a>
+<a class="sourceLine" id="cb9-19" title="19"><span class="co">#&gt;  Median :  0.00    Median :  0.00   </span></a>
+<a class="sourceLine" id="cb9-20" title="20"><span class="co">#&gt;  Mean   : 16.48    Mean   : 13.87   </span></a>
+<a class="sourceLine" id="cb9-21" title="21"><span class="co">#&gt;  3rd Qu.: 37.00    3rd Qu.: 27.00   </span></a>
+<a class="sourceLine" id="cb9-22" title="22"><span class="co">#&gt;  Max.   :253.00    Max.   :413.00</span></a></code></pre></div>
+</div>
+<div id="visualize-the-difference" class="section level2">
+<h2>Visualize the difference:</h2>
+<p>As the summary shows, the counts calculated by activityCounts package and the software ActiLife are very close. In these plots, counts calculated by the package are sketched versus the counts calculated by the ActiLife software. The straight lines show strong correlations:</p>
+<p><img src="data:image/png;base64,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" /><!-- --><img src="data:image/png;base64,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" /><!-- --><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAAulBMVEUAAAAAADoAAGYAOpAAZrYzMzM6AAA6ADo6AGY6kNtNTU1NTW5NTY5NbqtNjshmAABmADpmAGZmZmZmtrZmtv9uTU1uTW5uTY5ubo5ubqtuq+SOTU2OTW6OTY6Obk2OyP+QOgCQtpCQ2/+rbk2rbm6ryKur5OSr5P+2ZgC225C22/+2///Ijk3I///bkDrb/9vb///kq27k///r6+v/tmb/yI7/25D/27b/5Kv//7b//8j//9v//+T////ZdOhJAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAKMklEQVR4nO2dDXvbNBDH3a2UNdvIgHZAByR0QANbA13SkjT19/9aWPKbHJ90Ui3LcvK/59m86W850i+nk+OXU5LCjJYM3YDYDYAYAyDGAIgxAGIMgBh7HqBVZco/mzZ2AYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYoRugQ7UkafGABylCIqwsAKC2AEAA1FGo+QAQJwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQIwAQI1gAup9M3tym6eOHydsv1QaAKtv8cJvefZM+fZwpmyMHtJ1ebKfJi08qpMdfbpXNkQNanKbLF5+Wp1VB5jObn76kjz/fFJus7KvM9OPy4EwFlDnQbn6arksX2ly+vknv30oyxabYc+BvN4SgAbSdnteAUsV1ag86YkC7+fn65FoMtMo+zxCDFHs4S07Txct/5X+KQfX08Sqfxa5GM4spD7E8/1AkoKbdTSZZDBrfeZD6GNTzD6WJQWKjxCCd+e+VRwGAGKEvQMuktFMSymgA9ReDCg+ysOc3fjQCBcjeBm58CIEElE3zwkYeg/wIFCDxOwMeVBYQgBCD1ALSgwCoLiAA2ZwBHTWg7TRBkK4KKA+ytoEbH0IAIEagAGGIqQVaD9q+u4YHGYfYurhiBkA6QBhiKyOgBTxoZQzSJ4hBK0zzrABAjEADkpddzwFopQG0FPOXuLkKQId8V8OPAECMQAGyH2JHZAjSGoEGZGsDNz6EAECMQALazc/t7v0M3PgQAglIPjplQ2jgxocQKECY5tUCADILFCD81FALKEDpGudBVQEJyNYGbnwIwQxo+605DA3c+BACADECADECADECADECADECADECADGCGRBnAzc+hEAB2k7lhQ78WJUFJCD57BQAyQIK0LvrRXIBQHkB6UEX6TI5fXgFQHpA4n0NeNDKACjdzQFohWmeFcyA5Ini5nIymY3wpV4/Ag9IpBHYvL9BchMdoHuBA4kFzL/FqNQUR5zcpLYCkEi3gOQmekCPH67SdnocAEqrWWwmKCEGaQDlfNIRJjcJdKJ4NxE2w3mQ6jj7Ocx0NnDjQwgkoFYOMwAy5jADoDagvRxmAMTlMBsKUCPDTTSAmjnMhgTUzJEUDyBr67uNkQKK5xlFAOKEGGNQjDnMck6RAIowf1Ax0qIBZG9h2hgfoNhymMUGKL4cZohB8Qq0BwFQXUAAQg4ztYAAhARLagHlQdY2cONDCADECBQgDDG1QOtByGGWF2gBIYdZXmAAhCG2MgJCDjNZQACyz2F2RIZpXiMAECPQgJAepy6gACGxgFJAAIrorsbwAgAxAgUIQ0wtoAAhSCsFJCBbG7jxIQQAYgQCkIzRu7nF0y/HCejhLA8+CzzEKQtagKoHy2J4wmx4oQWovmuI8yBZAEBmoQVIJJnMbYkLZisqBi0Lx6lJAVADULqQlxK30wieco1AIADljwdZXXD10ZTWYp/xA7I3D01pLxcLQA1hjIC2U9sbGh6aMkZAWZxOEpufYsccg8S9sSDT/Dg9qETEnUt7aMpYAS3lg/bc3WcPTRkloN08Sayu23dsikQzwhi0ne5xkS/K+3/ruXae4d9Z0Qo0oKb73E/e3KY9ZH+pAEXw1pNWsAD0+fUfmQf1kHlhpICI16EEEb/ZX7KjV3/LbfK8U/lwZnwVQQDymv1lf+oaWQxqGelBnQEllOKnVx6FFqA8LUXzMeCN7xiUmAhFDkjnQX6zv5gIjRSQp/Mg5cxnvIDs16Zz/sQSy8g9SMz0Vq+MOX9iE1BvvfIokIBSeUWoj6WMS88Z8SymMOrjxqFCqMdeeRQMHtTLwwt18ImLg1YgAdmNr+cASg4CUH9vPSt8IuOgFUgPsjbXT1Qnr7g4aIUWIOqnhncPGvkQ68+DVEJxcdAKFKD+HiRPAMj8iQcBqM8ESwcSg3qY5hPVd/rvlUeBAmRvtp9I8ImMg1YgAfldDDtpWJBeeRRIQF4Xw04OD5DfWUzDJzIOWqF3QBo8sXHQChQgry/UHSQgn4th6/hExkEr0IBsjflEASXV8ImMg1boE9De/HVAgDwlmjTyiYyDVqAAZeeJu/mFzQ8O8yceLCCBZnFuk2DJbE0+3Y41uLUWgey8KoLZf2JzFK1AARI/NTI63d4XM0fonnvlUSABiR+ri453Vg8akLXpD8zyiYyDVugJEM8nMg5aoR9AFnwi46AVggAK3iuPQi+AbPhExkErhACEGLR34DYfzGIKAgrP0QNSGNB8AIgBFLhXHgXfgFpo4uquu+AHUB2DWq4TV3fdBU+AigMTQyuu7roLXgFRoSeu7roLvQIarFceBQBiBJ+AyLk9ru66C/0BGrJXHgWPgCj/ia277oI/QNQUNlSvPAoAxAjeALX4ABADaMheeRR8ASLhDNYrj4IzIPqtZx2e2LrrLrgC0mR/aQE62hhEZ15ohZ/ak+LqrrvgCojO/rIHaBz5XNzMtjd09hd4UGWa7C+IQaX5zEA1CsEVkKfsL+MRXAH5zII3CsEZUMMGbnwIAYAYAYAYAYAYAYAYoRug2txzTo6sBgAxNQCIqQFATI3DujbRgwEQYwDEGAAxBkCMdQLUuATCmTZzrm7/y8lk5lTjfiKS8LvUyO/WGGt0AdS8FcSYfgUB2sT13c37G4ca4huod7Vs3F32JRhrdAHUvAxrNsMKArTdi6Z+njnUEFbvaldj8+OvM3OrugBqXshn99blf9dbvattjcwDXGo8/f5n5jbGGl0ANW8FcaZdQUBr4jq4U43N5esbpxp3V2JcGWtE7EGPH67Sfn0u2+epTw9yiUGGFQR0+1/O6s+w/iinqHU3EXbVWwxq3griTLuCgGZ3ycelRjFEHGqk+UxsrBHteVD+7c5czmqyKlkMiug86CgMgBgDIMYAiDEAYgyAGAsOaNlMQ/jf3+nD19flEu7ZP7MdbNcL1lt2VF8WGtBu/p2a4EoQSRtr3NvnbNZbcVQvFhrQ+sVfZwqBNiAfnRszoMXLf+Z5zmGR+VzkJTxvDLHfzkS5UBVHK9IX1mDz2tVWAsn+yqtfyKPmlbp7Y2BAIlGsyBgrcjKLwSS61oxBokRmbN5LpaZmcS5ri634UwE6y+pkhy+OKsh2JhQYkMiwJ1pdDgIa0DpPutvonLq6cllb7rfOgeSALqpjPLzilyiyscCAREpv8Z2XqQhpQMX6A+p0t1RDe1lbZnws6rS2C5vVC3gLC6hY++XFJwZQK1HhujH1WwGSn2ax0hVjYQHlfpCNBGaI7Z8J7RVUQ0wUq0OsCcjLOUNQQEWgzTZleC0CdStIZ66hQNmPtWXt+ihisYKTCpA4qvQyD/N9UEBlR5cn1+VEvUhOJaA86JTfvvi/4jQLqSoFe9O8nNK/f1cBEkeVycO7n5PjtxhnAMRYzICKE+hqoOz/P4jFDCgKAyDGAIgxAGIMgBgDIMYAiLH/AWJKpJQjD1RMAAAAAElFTkSuQmCC" /><!-- --></p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
