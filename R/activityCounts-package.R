@@ -1,10 +1,10 @@
 #' @keywords internal
 #' @author Ruben Brondeel, Javad Rahimipour Anaraki, SeyedJavad KhataeiPour, Daniel Fuller.
 #'
-#' \subsection{Maintainer}{SeyedJavad KhataeiPour \email{skhataeipour@@mun.ca}}
+#' \subsection{Maintainer}{Daniel Fuller \email{daniel.fuller@@usask.ca}}
 #' @details
 #' There are two datasets and a main function in this package
-#' @family The main function anf sample datasets
+#' @family The main function and sample datasets
 #' @seealso \link{counts}
 #'  to see how to produce counts.
 #'

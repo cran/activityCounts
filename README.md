@@ -5,11 +5,14 @@
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.org/walkabillylab/activityCounts.svg?branch=master)](https://travis-ci.org/walkabillylab/activityCounts)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/activityCounts)](https://cran.r-project.org/package=activityCounts)
+[![CRAN_latest_release_date](https://www.r-pkg.org/badges/last-release/activityCounts)](https://cran.r-project.org/package=activityCounts)
+[![metacran
+downloads](https://cranlogs.r-pkg.org/badges/activityCounts)](https://cran.r-project.org/package=activityCounts)
+[![R-CMD-check](https://github.com/walkabillylab/activityCounts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/walkabillylab/activityCounts/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-# Introduction
+## Introduction
 
 Many research areas use accelerometers to study people’s activities
 including sleep, sedentary behaviour, and physical activity. Actigraph
@@ -21,28 +24,33 @@ There is considerable research validating and developing algorithms for
 human activity using Actilife counts. Unfortunately, Actilife counts are
 proprietary and difficult to implement if researchers use different
 accelerometer brands. Recently, [Brond et
-al.](https://www.ncbi.nlm.nih.gov/pubmed/28604558) developed a
+al.](https://pubmed.ncbi.nlm.nih.gov/28604558/) developed a
 [code](https://github.com/jbrond/ActigraphCounts) in MATLAB, which can
 convert raw accelerometer data to Actilife counts. Their work can help
 researchers use different accelerometers and calculate Actilife counts,
 MATLAB is a commercial program. Unlike MATLAB, R is open-source, and
 also R is very popular among health and activity researchers. The
 package activityCounts allow users to convert the accelerometer data to
-Actilife
-counts.
+Actilife counts.
 
 ### The goal of activityCounts is to calculate ActiLife counts based on the raw acceleration data.
 
 ## Installation
 
-You can install the released version of activityCounts from
+Please see
+[NEWS.md](https://github.com/walkabillylab/activityCounts/blob/master/NEWS.md)
+for a differences between the current CRAN release (0.1.2) and the
+development version (0.2.0). The current development version will be
+submitted to CRAN shortly.
+
+You can install the version 0.1.2 of activityCounts from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("activityCounts")
 ```
 
-You can install the development version from
+You can install the development version 0.2.0 from
 [GitHub](https://github.com/walkabillylab/activityCounts) with:
 
 ``` r
@@ -101,14 +109,13 @@ time, the current time is considered as the start time.
 In this example code, the first column has the time stamp for the data.
 The second column has the x-axis data, the third column has the y-axis
 data, and the fourth column has the z-axis data. Therefore, assuming the
-sampling frequency is 100 Hz, we call the function like
-this:
+sampling frequency is 100 Hz, we call the function like this:
 
 ``` r
 calculated_output <- counts(data = your_raw_data, hertz = 100, x_axis = 2, y_axis = 3, z_axis = 4)
 ```
 
-The default values for x\_axis, y\_axis, and z\_axis are one, two, and
+The default values for x_axis, y_axis, and z_axis are one, two, and
 three respectively. So if you don’t specify them, the function assumes
 the first column is for the x-axis, the second for the y-axis and the
 third is for the z-axis.

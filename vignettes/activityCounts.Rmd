@@ -18,13 +18,12 @@ knitr::opts_chunk$set(
 
 <style>
   body{
-    text-align : justify;
     line-height: 1.8em;
   }
 </style>
   
 # Introduction
-Many research areas use accelerometers to study people's activities including sleep, sedentary behaviour, and physical activity. Actigraph is one of the most common research grade accelerometers. Actigraph accelerometers include ActiLife is a closed-source software, which generates [activity counts](https://s3.amazonaws.com/actigraphcorp.com/wp-content/uploads/2017/11/26205758/ActiGraph-White-Paper_What-is-a-Count_.pdf). There is considerable research validating and developing algorithms for human activity using Actilife counts. Unfortunately, Actilife counts are proprietary and difficult to implement if researchers use different accelerometer brands. Recently, [Brond et al.](https://www.ncbi.nlm.nih.gov/pubmed/28604558) developed a [code](https://github.com/jbrond/ActigraphCounts) in MATLAB, which can convert raw accelerometer data to Actilife counts. Their work can help researchers use different accelerometers and calculate Actilife counts, MATLAB is a commercial program. Unlike MATLAB, R is open-source, and also R is very popular among health and activity researchers. The package activityCounts allow users to convert the accelerometer data to Actilife counts.
+Many research areas use accelerometers to study people's activities including sleep, sedentary behaviour, and physical activity. Actigraph is one of the most common research grade accelerometers. Actigraph accelerometers include ActiLife is a closed-source software, which generates [activity counts](https://s3.amazonaws.com/actigraphcorp.com/wp-content/uploads/2017/11/26205758/ActiGraph-White-Paper_What-is-a-Count_.pdf). There is considerable research validating and developing algorithms for human activity using Actilife counts. Unfortunately, Actilife counts are proprietary and difficult to implement if researchers use different accelerometer brands. Recently, [Brond et al.](https://pubmed.ncbi.nlm.nih.gov/28604558/) developed a [code](https://github.com/jbrond/ActigraphCounts) in MATLAB, which can convert raw accelerometer data to Actilife counts. Their work can help researchers use different accelerometers and calculate Actilife counts, MATLAB is a commercial program. Unlike MATLAB, R is open-source, and also R is very popular among health and activity researchers. The package activityCounts allow users to convert the accelerometer data to Actilife counts.
 
 <br>
 
@@ -32,8 +31,8 @@ Many research areas use accelerometers to study people's activities including sl
 ## Install R
 Visit [R Project](https://www.r-project.org/) to download and install R.
 
-## Install RStudio (recommended)
-Although it is not necessary, RStudio makes using R easier. To install the latest version, go to [RStudio](https://www.rstudio.com/) and download the installation file based on your operating system.
+## Install POSIT (recommended)
+Although it is not necessary, RStudio Desktop makes using R easier. To install the latest version, go to [POSIT](https://posit.co/products/open-source/rstudio/) and download the installation file based on your operating system.
 
 ## Install activityCounts
 
@@ -114,8 +113,8 @@ The default values for x_axis, y_axis, and z_axis are one, two, and three respec
 ## Compare the sample outputs:
 
 The other dataset that comes with this package has nine columns; the first three columns are the raw accelerometer data from sampleXYZ, the next three columns are the counts calculated by the counts() function for X, Y, and Z axes. Finally, the last three columns are counts calculated by the ActiLife software. To check the data run the following:
-  
-  
+
+
 ```{r message=FALSE, warning=FALSE}
 summary(sampleCounts)
 ```
@@ -125,9 +124,7 @@ summary(sampleCounts)
 As the summary shows, the counts calculated by activityCounts package and the software ActiLife are very close. In these plots, counts calculated by the package are sketched versus the counts calculated by the ActiLife software. The straight lines show strong correlations: 
   
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(ggplot2)
-ggplot(data = sampleCounts, aes(x = ActiLife_x_counts, y = activityCounts_x_counts)) + geom_point() 
-ggplot(data = sampleCounts, aes(x = ActiLife_y_counts, y = activityCounts_y_counts)) + geom_point() 
-ggplot(data = sampleCounts, aes(x = ActiLife_z_counts, y = activityCounts_z_counts)) + geom_point()
-
+plot(sampleCounts$activityCounts_x_counts, sampleCounts$ActiLife_x_counts)
+plot(sampleCounts$activityCounts_y_counts, sampleCounts$ActiLife_y_counts)
+plot(sampleCounts$activityCounts_z_counts, sampleCounts$ActiLife_z_counts)
 ```
